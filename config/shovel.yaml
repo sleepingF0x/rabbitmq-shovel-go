@@ -1,0 +1,61 @@
+handlerNumbers:    10
+rabbitMQSrc:
+  - host: 127.0.0.1
+    port: 5672
+    username: username
+    password: password
+    virtualHost: /
+    exchange:
+      autoDelete: false
+      durable: true
+      exchangeName: exchange.name
+      exchangeType: topic
+
+    queue:
+      autoDelete: false
+      durable: true
+      exclusive: false
+      queueName: queue.name
+      routingKey:
+      arguments:
+        x-max-priority: 10
+
+  - host: 127.0.0.1
+    port: 5672
+    username: username
+    password: password
+    virtualHost: /
+
+    exchange:
+      autoDelete: false
+      durable: true
+      exchangeName: exchange.name
+      exchangeType: topic
+
+    queue:
+      autoDelete: false
+      durable: true
+      exclusive: false
+      queueName: queue.name
+      routingKey:
+      arguments:
+        x-max-priority: 10
+
+rabbitMQDest:
+  host: 127.0.0.1
+  port: 5672
+  username: username
+  password: password
+  virtualHost: /
+
+  exchange:
+    autoDelete: false
+    durable: true
+    exchangeName: exchange.name
+    exchangeType: topic
+  queue:
+    autoDelete: false
+    durable: true
+    exclusive: false
+    queueName:
+    routingKey:
