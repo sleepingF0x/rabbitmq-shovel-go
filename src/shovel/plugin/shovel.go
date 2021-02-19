@@ -1,4 +1,4 @@
-package main
+package plugin
 
 import (
 	"fmt"
@@ -62,7 +62,7 @@ func NewShovel(
 ) *Shovel {
 
 	addrPub := fmt.Sprintf(
-		"amqp://%v:%v@%v:%v/%v",
+		"amqp://%v:%v@%v:%v%v",
 		destConf.Username,
 		destConf.Password,
 		destConf.Host,
@@ -71,7 +71,7 @@ func NewShovel(
 	)
 
 	addrCons := fmt.Sprintf(
-		"amqp://%v:%v@%v:%v/%v",
+		"amqp://%v:%v@%v:%v%v",
 		srcConf.Username,
 		srcConf.Password,
 		srcConf.Host,

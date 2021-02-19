@@ -52,8 +52,8 @@ func (c *Connection) Connect() error {
 
 	c.connNotify = c.conn.NotifyClose(make(chan *amqp.Error))
 	c.channelNotify = c.channel.NotifyClose(make(chan *amqp.Error))
-	c.connected <- true
 	log.Println("rabbitmq connect success")
+	c.connected <- true
 	go c.ReConnect()
 	return err
 }
@@ -98,11 +98,10 @@ func (c *Connection) ReConnect() {
 			case <-c.quit:
 				return
 			default:
+				time.Sleep(time.Second * 10)
 				log.Println("rabbitmq consumer - reconnect")
 				if err := c.Connect(); err != nil {
 					log.Println("rabbitmq consumer - failCheck: ", err)
-					// sleep 10s reconnect
-					time.Sleep(time.Second * 10)
 					continue
 				}
 				return

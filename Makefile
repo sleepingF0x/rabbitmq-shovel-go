@@ -4,7 +4,7 @@ BINARY="shovel"
 
 .PHONY: build
 build:
-	GOOS=linux GOARCH="amd64" go build -o ${BINARY}-linux-amd64 ./src/shovel/
+	GOOS=linux GOARCH="amd64" go build -o ${BINARY} ./src/shovel/main/main.go
 
 .PHONY: install
 install:
