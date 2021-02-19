@@ -140,11 +140,14 @@ func (c *Consumer) consumeOnConnect() error {
 				false,   // no-wait
 				nil,     // args
 			); err != nil {
-				log.Printf("channel consume error: %s", err)
-				_ = c.conn.channel.Close()
-				_ = c.conn.conn.Close()
+				if !c.conn.conn.IsClosed(){
+					log.Printf("channel consume error: %s", err)
+					_ = c.conn.channel.Close()
+					_ = c.conn.conn.Close()
+				}
+			} else {
+				go c.Handle(delivery)
 			}
-			go c.Handle(delivery)
 		}
 	}
 }

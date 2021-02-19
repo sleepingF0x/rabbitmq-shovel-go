@@ -7,9 +7,9 @@ import (
 const (
 	Major = "0"
 	Minor = "1"
-	Build = "2"
+	Build = "3"
 )
 
 func Full() string {
-	return fmt.Sprintf("%s.%s:%s", Major, Minor, Build)
+	return fmt.Sprintf("%s.%s.%s", Major, Minor, Build)
 }
